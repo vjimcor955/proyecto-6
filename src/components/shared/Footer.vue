@@ -13,11 +13,11 @@
 
 
 <style scoped lang="scss">
-  footer{
+  footer {
+    height: 45px;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 15px;
     background-color: #f1f1f1;
   }
 </style>
