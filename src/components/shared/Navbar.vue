@@ -4,11 +4,12 @@
     <div class="header__navbar">
       <div class="header__navbar_links">
         <router-link to="/" class="header__navbar_links--link">Home</router-link>
+        <router-link to="/contact" class="header__navbar_links--link">Contactanos</router-link>
         <!-- Ternario que muestre el resto de links si el usuario está logueado -->
-        <!-- <router-link to="/ranking-general" class="header__links--link">Ranking general</router-link> -->
-        <!-- <router-link to="/listas" class="header__links--link">Mis listas</router-link> -->
-        <!-- <router-link to="/user" class="header__links--link">Usuario</router-link> -->
-        <!-- <router-link to="/crear-elemento" class="header__links--link">Añadir canción/álbum</router-link> -->
+        <!-- <router-link to="/general-ranking" class="header__navbar_links--link">Ranking general</router-link> -->
+        <!-- <router-link to="/lists" class="header__navbar_links--link">Mis listas</router-link> -->
+        <!-- <router-link to="/user" class="header__navbar_links--link">Usuario</router-link> -->
+        <!-- <router-link to="/create-element" class="header__navbar_links--link" id="add_song">Añadir canción/álbum</router-link> -->
       </div>
       <div class="header__navbar_buttons">
         <router-link to="/login" class="header__navbar_buttons--login">Login</router-link>
@@ -26,11 +27,11 @@
 
 <style scoped lang="scss">
   .header {
+    height: 80px;
     display: flex;
     align-content: center;
     justify-content: space-around;
     align-items: center;
-    padding: 20px 0px;
     background-color: #f1f1f1;
 
     &__title {
@@ -43,7 +44,7 @@
       justify-content: space-between;
       align-items: center;
       width: 50%;
-      gap: 100px;
+      gap: 50px;
 
       &_links {
         display: flex;
@@ -55,6 +56,15 @@
         &--link {
           text-decoration: none;
           color: #000;
+
+          &#add_song {
+            background-color: #fff;
+            border: 2px solid #000;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+          }
         }
       } 
   
