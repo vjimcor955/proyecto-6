@@ -27,6 +27,6 @@
 <style scoped lang="scss">
   main {
     min-height: calc(100vh - 125px);
-
+    font-family: "Afacad";
   }
 </style>

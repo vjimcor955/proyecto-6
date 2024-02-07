@@ -14,6 +14,7 @@
 
 <style scoped lang="scss">
   footer {
+    font-family: "Afacad";
     height: 45px;
     display: flex;
     justify-content: center;

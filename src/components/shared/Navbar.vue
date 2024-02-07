@@ -27,6 +27,7 @@
 
 <style scoped lang="scss">
   .header {
+    font-family: "Afacad";
     height: 80px;
     display: flex;
     align-content: center;
