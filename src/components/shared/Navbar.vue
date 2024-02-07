@@ -9,11 +9,11 @@
         <!-- <router-link to="/general-ranking" class="header__navbar_links--link">Ranking general</router-link> -->
         <!-- <router-link to="/lists" class="header__navbar_links--link">Mis listas</router-link> -->
         <!-- <router-link to="/user" class="header__navbar_links--link">Usuario</router-link> -->
-        <!-- <router-link to="/create-element" class="header__navbar_links--link" id="add_song">Añadir canción/álbum</router-link> -->
+        <!-- <router-link to="/create-element" class="header__navbar_links--link white_button" id="add_song">Añadir canción/álbum</router-link> -->
       </div>
       <div class="header__navbar_buttons">
-        <router-link to="/login" class="header__navbar_buttons--login">Login</router-link>
-        <router-link to="/login" class="header__navbar_buttons--register">Register</router-link>
+        <router-link to="/login" class="header__navbar_buttons--login white_button">Login</router-link>
+        <router-link to="/login" class="header__navbar_buttons--register black_button">Register</router-link>
       </div>
     </div>
   </header>
@@ -56,39 +56,16 @@
         &--link {
           text-decoration: none;
           color: #000;
+        }
 
-          &#add_song {
-            background-color: #fff;
-            border: 2px solid #000;
-            color: #000;
-            padding: 10px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-          }
+        &--link:hover {
+          text-decoration: underline;
         }
       } 
   
       &_buttons {
         display: flex;
         gap: 25px;
-  
-        &--login {
-          background-color: #fff;
-          border: 2px solid #000;
-          color: #000;
-          padding: 10px 20px;
-          border-radius: 5px;
-          text-decoration: none;
-        }
-  
-        &--register {
-          background-color: #000;
-          border: 2px solid #000;
-          color: #fff;
-          padding: 10px 20px;
-          border-radius: 5px;
-          text-decoration: none;
-        }
       }
     }
 
@@ -96,7 +73,6 @@
 
   .router-link-active.router-link-exact-active {
     text-decoration: underline;
-    // font-weight: bold;
   }
 
 </style>
