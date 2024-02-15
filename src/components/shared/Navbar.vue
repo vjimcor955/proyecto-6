@@ -3,17 +3,17 @@
     <h3 class="header__title">Music App</h3>
     <div class="header__navbar">
       <div class="header__navbar_links">
-        <!-- <router-link to="/" class="header__navbar_links--link">Home</router-link> -->
         <router-link :to="{name: 'home'}" class="header__navbar_links--link">Home</router-link>
         <router-link :to="{name: 'contact'}" class="header__navbar_links--link">Contactanos</router-link>
-        <!-- Ternario que muestre el resto de links si el usuario está logueado -->
-        <!-- <router-link :to="{name: 'general-ranking'}" class="header__navbar_links--link">Ranking general</router-link> -->
-        <!-- <router-link :to="{name: 'lists'}" class="header__navbar_links--link">Mis listas</router-link> -->
-        <!-- <router-link :to="{name: 'user'}" class="header__navbar_links--link">Usuario</router-link> -->
-        <!-- <router-link :to="{name: 'create-element'}" class="header__navbar_links--link white_button" id="add_song">Añadir canción/álbum</router-link> -->
+        <!-- Links below only shown if user logged -->
+        <router-link :to="{name: 'general-ranking'}" class="header__navbar_links--link" v-if="isLogged">Ranking general</router-link>
+        <router-link :to="{name: 'lists'}" class="header__navbar_links--link" v-if="isLogged">Mis listas</router-link>
+        <router-link :to="{name: 'user'}" class="header__navbar_links--link" v-if="isLogged">Usuario</router-link>
+        <router-link :to="{name: 'create-element'}" class="header__navbar_links--link white_button" id="add_song" v-if="isLogged">Añadir canción/álbum</router-link>
       </div>
       <div class="header__navbar_buttons">
-        <router-link :to="{name: 'login'}" class="header__navbar_buttons--login white_button">Login / Register</router-link>
+        <router-link :to="{name: 'login'}" class="header__navbar_buttons--login white_button" v-if="!isLogged">Login / Register</router-link>
+        <button class="header__navbar_buttons--logout white_button" @click="handleLogout" v-else>Logout</button>
       </div>
     </div>
   </header>
@@ -21,7 +21,20 @@
 
 
 <script>
-
+  export default {
+    props: {
+      isLogged: {
+        type: Boolean,
+        default: false
+      } 
+    },
+    methods: {
+      handleLogout() {
+        // set prompt isLogged to false
+        this.$emit('logout')
+      }
+    }
+  }
 </script>
 
 

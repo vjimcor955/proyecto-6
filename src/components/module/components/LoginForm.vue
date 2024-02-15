@@ -12,7 +12,7 @@
       </div>
       <input type="submit" value="Iniciar sesión" v-bind:disabled="loginButtonDisabled" class="white_button" @click="handleLogin">
       <p v-if="loginError" class="validation">Datos incorrectos</p>
-      <p v-if="logged" class="confirmation">Sesión iniciada correctamente</p>
+      <p v-if="isLogged" class="confirmation">Sesión iniciada correctamente</p>
     </form>
   </div>
 </template>
@@ -27,8 +27,8 @@
           password: null,
         },
         loginError: false,
-        logged: false,
         loginButtonDisabled: true,
+        isLogged: false
       }
     },
     watch: {
@@ -47,10 +47,15 @@
         e.preventDefault()
         if (this.loginData.user == 'admin' && this.loginData.password == 'admin') {
           this.loginError = false
-          this.logged = true
+          this.isLogged = true
+          this.$emit('login')
+          // redirect to home page after 2 seconds
+          setTimeout(() => {
+            this.$router.push('/');
+          }, 2000);
         } else {
           this.loginError = true
-          this.logged = false
+          this.isLogged = false
         }
       },
     }
