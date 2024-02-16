@@ -46,9 +46,6 @@ const routes = [
         component: () => import('../module/pages/CreateElement.vue') 
       },
     ],
-    // beforeEnter: (to, from, next) => {
-    //   // ...
-    // }
   },
   { path: '/:pathMatch(.*)*', 
     name: 'not-found',
