@@ -13,8 +13,8 @@
       </div>
       <div class="header__navbar_buttons">
         <!-- If user is not logged, show login button, else show logout button -->
-        <router-link :to="{name: 'login'}" class="header__navbar_buttons--login white_button" v-if="!isLogged">Login / Register</router-link>
-        <router-link :to="{name: 'root-home'}" class="header__navbar_buttons--logout black_button" @click="handleLogout" v-else>Logout</router-link>
+        <router-link :to="{name: 'login'}"  v-if="!isLogged" class="header__navbar_buttons--login white_button">Login / Register</router-link>
+        <router-link :to="{name: 'root-home'}" v-else class="header__navbar_buttons--logout black_button" @click="handleLogout">Logout</router-link>
       </div>
     </div>
   </header>
@@ -22,17 +22,17 @@
 
 
 <script>
+  import {useAuthStore} from '@/components/stores/authStore'
+
   export default {
-    props: {
-      isLogged: {
-        type: Boolean,
-        default: false
-      } 
+    computed: {
+      isLogged() {
+        return useAuthStore().isLogged
+      }
     },
     methods: {
       handleLogout() {
-        // set isLogged to false
-        this.$emit('logout')
+        useAuthStore().logOut()
       }
     }
   }

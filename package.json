@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "pinia": "^2.1.7",
+    "pinia-plugin-persist": "^1.0.0",
     "sass": "^1.70.0",
     "vue": "^3.4.15",
     "vue-router": "^4.2.5"

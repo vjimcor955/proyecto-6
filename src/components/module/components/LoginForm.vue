@@ -12,13 +12,15 @@
       </div>
       <input type="submit" value="Iniciar sesión" v-bind:disabled="loginButtonDisabled" class="white_button" @click="handleLogin">
       <p v-if="loginError" class="validation">Datos incorrectos</p>
-      <p v-if="isLogged" class="confirmation">Sesión iniciada correctamente</p>
+      <p v-if="loggingIn" class="confirmation">Sesión iniciada correctamente</p>
     </form>
   </div>
 </template>
 
 
 <script>
+  import {useAuthStore} from '@/components/stores/authStore'
+
   export default {
     data() {
       return {
@@ -27,14 +29,19 @@
           password: null,
         },
         loginError: false,
+        loggingIn: false,
         loginButtonDisabled: true,
-        isLogged: false
       }
     },
     watch: {
       'loginData.password'() {
         this.check_loginButton()
       },
+    },
+    computed: {
+      isLogged() {
+        return useAuthStore().isLogged
+      }
     },
     methods: {
       // Method that enables the button if the login fields are not null
@@ -47,15 +54,14 @@
         e.preventDefault()
         if (this.loginData.user == 'admin' && this.loginData.password == 'admin') {
           this.loginError = false
-          this.isLogged = true
-          this.$emit('login')
-          // redirect to home page after 2 seconds
+          this.loggingIn = true
+          useAuthStore().logIn(this.loginData.user)
           setTimeout(() => {
             this.$router.push('/user');
           }, 1000);
         } else {
           this.loginError = true
-          this.isLogged = false
+          this.loggingIn = false
         }
       },
     }

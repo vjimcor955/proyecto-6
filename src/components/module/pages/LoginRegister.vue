@@ -1,7 +1,7 @@
 <template>
   <div class="loginRegister">
     <div class="form">
-      <LoginForm v-if="!register" @login="login"/>
+      <LoginForm v-if="!register"/>
       <RegisterForm v-else />
       <a @click="register = !register">{{ !register ? 'Registrarse' : 'Iniciar sesión' }}</a>
     </div>
@@ -23,11 +23,6 @@
       LoginForm,
       RegisterForm
     },
-    methods: {
-      login() {
-        this.$emit('login')
-      }
-    }
   }
 </script>
 
