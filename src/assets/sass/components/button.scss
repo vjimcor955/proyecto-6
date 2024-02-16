@@ -48,3 +48,21 @@
   color: #fff;
   cursor: auto;
 }
+
+.navbar_button {
+  width: max-content;
+  background-color: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+  padding: 5px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.navbar_button:hover {
+  text-decoration: underline;
+}
