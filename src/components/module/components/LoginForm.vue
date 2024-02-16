@@ -51,8 +51,8 @@
           this.$emit('login')
           // redirect to home page after 2 seconds
           setTimeout(() => {
-            this.$router.push('/');
-          }, 2000);
+            this.$router.push('/user');
+          }, 1000);
         } else {
           this.loginError = true
           this.isLogged = false
