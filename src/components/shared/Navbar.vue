@@ -3,17 +3,18 @@
     <h3 class="header__title">Music App</h3>
     <div class="header__navbar">
       <div class="header__navbar_links">
-        <router-link :to="{name: 'home'}" class="header__navbar_links--link">Home</router-link>
+        <router-link :to="{name: 'root-home'}" class="header__navbar_links--link">Home</router-link>
         <router-link :to="{name: 'contact'}" class="header__navbar_links--link">Contactanos</router-link>
         <!-- Links below only shown if user logged -->
         <router-link :to="{name: 'general-ranking'}" class="header__navbar_links--link" v-if="isLogged">Ranking general</router-link>
         <router-link :to="{name: 'lists'}" class="header__navbar_links--link" v-if="isLogged">Mis listas</router-link>
-        <router-link :to="{name: 'user'}" class="header__navbar_links--link" v-if="isLogged">Usuario</router-link>
+        <router-link :to="{name: 'private-user'}" class="header__navbar_links--link" v-if="isLogged">Usuario</router-link>
         <router-link :to="{name: 'create-element'}" class="header__navbar_links--link white_button" id="add_song" v-if="isLogged">Añadir canción/álbum</router-link>
       </div>
       <div class="header__navbar_buttons">
+        <!-- If user is not logged, show login button, else show logout button -->
         <router-link :to="{name: 'login'}" class="header__navbar_buttons--login white_button" v-if="!isLogged">Login / Register</router-link>
-        <button class="header__navbar_buttons--logout white_button" @click="handleLogout" v-else>Logout</button>
+        <router-link :to="{name: 'root-home'}" class="header__navbar_buttons--logout black_button" @click="handleLogout" v-else>Logout</router-link>
       </div>
     </div>
   </header>
@@ -30,7 +31,7 @@
     },
     methods: {
       handleLogout() {
-        // set prompt isLogged to false
+        // set isLogged to false
         this.$emit('logout')
       }
     }
@@ -57,7 +58,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      width: 50%;
+      width: 60%;
       gap: 50px;
 
       &_links {
