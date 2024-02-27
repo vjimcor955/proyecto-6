@@ -33,6 +33,7 @@
     align-items: center;
     gap: 20px;
     padding: 10px 10px;
+    border-radius: 5px;
     border: 1px solid rgb(128, 128, 128, 0.5);
     
     &--img {
