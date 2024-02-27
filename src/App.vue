@@ -1,8 +1,8 @@
 <template>
   <div>
-    <Navbar :isLogged=isLogged @logout="handleLogout"/>
+    <Navbar />
     <main>
-      <router-view @login="handleLogin"/>
+      <router-view />
     </main>
     <Footer />
   </div>
@@ -19,19 +19,6 @@
       Navbar,
       Footer
     },
-    data() {
-      return {
-        isLogged: false,
-      }
-    },
-    methods: {
-      handleLogin() {
-        this.isLogged = true
-      },
-      handleLogout() {
-        this.isLogged = false
-      }
-    }
   }
 
 </script>
