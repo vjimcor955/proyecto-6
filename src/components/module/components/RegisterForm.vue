@@ -30,6 +30,8 @@
 
 
 <script>
+  import axios from 'axios'
+
   export default {
     data() {
       return {
@@ -98,9 +100,17 @@
         if (!this.nameError && !this.emailError && !this.userError && !this.passwordError) return this.registerButtonDisabled = false
         this.registerButtonDisabled = true
       },
-      handleRegister(e) {
+      async handleRegister(e) {
         e.preventDefault()
-        this.registered = true
+        try {
+          const response = await axios.post('http://localhost:80/api/register', this.registerData);
+          this.registered = true
+          setTimeout(() => {
+            this.$router.push('/');
+          }, 1000);
+        } catch (error) {
+          console.error(error)
+        }
       },
     }
   }
