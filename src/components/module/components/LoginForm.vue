@@ -65,7 +65,7 @@
           useAuthStore().logIn(user)
           this.loggingIn = true
           setTimeout(() => {
-            this.$router.push('/');
+            this.$router.push({ name: 'home' });
           }, 1000);
         } catch (error) {
           console.error(error)

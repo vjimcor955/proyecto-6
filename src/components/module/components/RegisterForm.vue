@@ -106,7 +106,7 @@
           const response = await axios.post('http://localhost:80/api/register', this.registerData);
           this.registered = true
           setTimeout(() => {
-            this.$router.push('/');
+            this.$router.push({ name: 'home' });
           }, 1000);
         } catch (error) {
           console.error(error)
