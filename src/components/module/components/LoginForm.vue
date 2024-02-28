@@ -20,6 +20,7 @@
 
 <script>
   import {useAuthStore} from '@/components/stores/authStore'
+  import axios from 'axios'  
 
   export default {
     data() {
@@ -50,16 +51,24 @@
         this.loginButtonDisabled = true
       },
       // Method that handles the login
-      handleLogin(e) {
+      async handleLogin(e) {
         e.preventDefault()
-        if (this.loginData.user == 'admin' && this.loginData.password == 'admin') {
-          this.loginError = false
+        try {
+          const response = await axios.post('http://localhost:80/api/login', this.loginData);
+          const user = {
+            name: response.data.user.name,
+            email: response.data.user.email,
+            user: this.loginData.user,
+            password: this.loginData.password,
+            token: response.data.token
+          }
+          useAuthStore().logIn(user)
           this.loggingIn = true
-          useAuthStore().logIn(this.loginData.user)
           setTimeout(() => {
-            this.$router.push('/user');
+            this.$router.push('/');
           }, 1000);
-        } else {
+        } catch (error) {
+          console.error(error)
           this.loginError = true
           this.loggingIn = false
         }
