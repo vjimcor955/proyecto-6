@@ -92,10 +92,6 @@
         // check if the element exists
         const songExists = await this.checkSong(postElement)
         const albumExists = await this.checkAlbum(postElement)
-
-        console.log('Song', songExists)
-        console.log('Album', albumExists)
-
         if (!songExists.exists || !albumExists.exists) {
           try {
             const response = await axios.post(`http://localhost:80/api/${this.element.type}`,
@@ -113,7 +109,6 @@
             }
             this.userRanking.songs.push(addToRanking)
             this.updateUser()
-            console.log('User Ranking', this.userRanking)
           } catch (error) {
             console.error(error)
           }
@@ -131,7 +126,6 @@
           }
           this.userRanking.songs.push(addToRanking)
           this.updateUser()
-          console.log('User Ranking', this.userRanking)
         }     
         this.confirmation = true
         setTimeout(() => {

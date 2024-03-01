@@ -94,7 +94,6 @@
       // sort ranking by rating
       showRanking.sort((a, b) => b.rating - a.rating);
       this.ranking = showRanking;
-      console.log('showRanking:', this.ranking);
     },
   }
 </script>
