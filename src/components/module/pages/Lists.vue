@@ -19,18 +19,15 @@
 
 <script>
   import ListCard from '@/components/module/components/ListCard.vue'
-  import songsMap from '@/api.js'
 
   export default {
     name: 'Lists',
     data() {
       return {
-        songsMap
       }
     },
     components: {
       ListCard,
-      songsMap
     }
   }
 </script>
