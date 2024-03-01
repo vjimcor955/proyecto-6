@@ -7,9 +7,10 @@ export const useAuthStore = defineStore('authStore', {
       email: '',
       user: '',
       password: '',
-      token: ''
+      token: '',
+      ranking: {},
+      lists: {},
     },
-    // user: null,
     isLogged: false,
   }),
   actions: {
@@ -19,7 +20,9 @@ export const useAuthStore = defineStore('authStore', {
         email: user.email,
         user: user.user,
         password: user.password,
-        token: user.token
+        token: user.token,
+        ranking: user.ranking,
+        lists: user.lists
       }
       this.isLogged = true
     },
@@ -29,10 +32,15 @@ export const useAuthStore = defineStore('authStore', {
         email: '',
         user: '',
         password: '',
-        token: ''
+        token: '',
+        ranking: {},
+        lists: {}
       }
       this.isLogged = false
     },
+    updateUserRanking(ranking) {
+      this.user.ranking = ranking
+    }
   },
   persist: {
     enabled: true,
