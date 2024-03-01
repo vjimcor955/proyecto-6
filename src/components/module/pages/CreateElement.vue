@@ -29,7 +29,7 @@
 
 
 <script>
-  import axios, { all } from 'axios'
+  import axios from 'axios'
   import useAuthStore from '@/components/stores/authStore'
 
   export default {
@@ -112,7 +112,7 @@
               rating: this.element.rating
             }
             this.userRanking.songs.push(addToRanking)
-            useAuthStore().updateUserRanking(this.userRanking)
+            this.updateUser()
             console.log('User Ranking', this.userRanking)
           } catch (error) {
             console.error(error)
@@ -130,7 +130,7 @@
             rating: this.element.rating
           }
           this.userRanking.songs.push(addToRanking)
-          useAuthStore().updateUserRanking(this.userRanking)
+          this.updateUser()
           console.log('User Ranking', this.userRanking)
         }     
         this.confirmation = true
@@ -178,6 +178,20 @@
           }
         })
         return info
+      },
+      updateUser() {
+        useAuthStore().updateUserRanking(this.userRanking)
+        axios.put(`http://localhost:80/api/users/${useAuthStore().user.id}`,
+          {
+            "ranking": JSON.stringify(this.userRanking),
+            "lists": "{}"
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${useAuthStore().user.token}`
+            }
+          }
+        )
       }
     },
     watch: {
