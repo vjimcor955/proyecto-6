@@ -3,22 +3,22 @@
     <div class="general_ranking__search_bar">
       <h2 class="general_ranking__search_bar--title">Ranking General</h2>
       <p class="general_ranking__search_bar--description">Listado con todas las canciones y albumes registrados.</p>
-      <input type="text" name="search" id="search" class="general_ranking__search_bar--input">
-      <div class="general_ranking__search_bar--buttons">
+      <input type="text" name="search" id="search" placeholder="Buscar por nombre" class="general_ranking__search_bar--input">
+      <!-- <div class="general_ranking__search_bar--buttons">
         <button class="navbar_button">Canciónes</button>
         <button class="navbar_button">Albumes</button>
-      </div>
+      </div> -->
     </div>
     <div class="general_ranking__song_list">
       <RankingCard
-        v-for="(song, index) in songsMap"
-        :key="index"
+        v-for="(element, index) in ranking"
+        :key="element.id"
         :position="index + 1"
-        :imgSrc="song.imgSrc"
-        :name="song.name"
-        :artist="song.artist"
-        :score="song.score"
-      />    
+        :type="element.type"
+        :name="element.name"
+        :artist="element.artist"
+        :score="element.rating"
+        />    
     </div>
   </div>
 </template>
@@ -26,19 +26,76 @@
 
 <script>
   import RankingCard from '../components/RankingCard.vue'
-  import songsMap from '@/api.js'
+  import useAuthStore from '@/components/stores/authStore'
+  import axios from 'axios'
 
   export default {
     name: 'GeneralRanking',
     data() {
       return {
-        songsMap
+        userRanking: null,
+        ranking: [],
       }
     },
     components: {
       RankingCard,
-      songsMap
-    }
+    },
+    methods: {
+      parseUserRanking() {
+        const userData = useAuthStore().user.ranking.songs
+        // parse userRanking values to int
+        userData.forEach(song => {
+          song.id = parseInt(song.id)
+          song.rating = parseInt(song.rating)
+        })
+        this.userRanking = userData
+      },
+      async getSongData(id) {
+        const response = await axios.get(`http://localhost:80/api/songs/${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${useAuthStore().user.token}`
+            }
+          }
+        )
+        return response.data
+      },
+      async getAlbumData(id) {
+        const response = await axios.get(`http://localhost:80/api/albums/${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${useAuthStore().user.token}`
+            }
+          }
+        )
+        return response.data
+      },
+    },
+    async created() {
+      this.parseUserRanking()
+      let elementData = null
+      let showRanking = await Promise.all(this.userRanking.map(async (element, index) => {
+        if (element.type === 'songs') {
+          elementData = await this.getSongData(element.id);
+          elementData.img = 'songs'
+        } else if (element.type === 'albums') {
+          elementData = await this.getAlbumData(element.id);
+          elementData.img = 'albums'
+        }
+        const addElement = {
+          id: elementData.id,
+          type: elementData.img,
+          name: elementData.name,
+          artist: elementData.artist,
+          rating: this.userRanking[index].rating
+        };
+        return addElement;
+      }));
+      // sort ranking by rating
+      showRanking.sort((a, b) => b.rating - a.rating);
+      this.ranking = showRanking;
+      console.log('showRanking:', this.ranking);
+    },
   }
 </script>
 
