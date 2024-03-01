@@ -56,7 +56,6 @@
         try {
           const response = await axios.post('http://localhost:80/api/login', this.loginData);
           const parsedRanking = JSON.parse(response.data.user.ranking)
-          console.log(response)
           const user = {
             id: response.data.user.id,
             name: response.data.user.name,
@@ -67,7 +66,6 @@
             ranking: parsedRanking,
             lists: response.data.user.lists
           }
-          console.log('USER', user)
           useAuthStore().logIn(user)
           this.loggingIn = true
           setTimeout(() => {
