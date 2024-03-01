@@ -7,8 +7,8 @@
         <router-link :to="{name: 'contact'}" class="header__navbar_links--link">Contactanos</router-link>
         <!-- Links below only shown if user logged -->
         <router-link :to="{name: 'general-ranking'}" class="header__navbar_links--link" v-if="isLogged">Ranking general</router-link>
-        <router-link :to="{name: 'lists'}" class="header__navbar_links--link" v-if="isLogged">Mis listas</router-link>
-        <router-link :to="{name: 'private-user'}" class="header__navbar_links--link" v-if="isLogged">Usuario</router-link>
+        <!-- <router-link :to="{name: 'lists'}" class="header__navbar_links--link" v-if="isLogged">Mis listas</router-link> -->
+        <!-- <router-link :to="{name: 'private-user'}" class="header__navbar_links--link" v-if="isLogged">Usuario</router-link> -->
         <router-link :to="{name: 'create-element'}" class="header__navbar_links--link white_button" id="add_song" v-if="isLogged">Añadir canción/álbum</router-link>
       </div>
       <div class="header__navbar_buttons">
