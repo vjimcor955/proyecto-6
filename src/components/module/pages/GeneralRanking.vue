@@ -3,11 +3,6 @@
     <div class="general_ranking__search_bar">
       <h2 class="general_ranking__search_bar--title">Ranking General</h2>
       <p class="general_ranking__search_bar--description">Listado con todas las canciones y albumes registrados.</p>
-      <input type="text" name="search" id="search" placeholder="Buscar por nombre" class="general_ranking__search_bar--input">
-      <!-- <div class="general_ranking__search_bar--buttons">
-        <button class="navbar_button">Canciónes</button>
-        <button class="navbar_button">Albumes</button>
-      </div> -->
     </div>
     <div class="general_ranking__song_list">
       <RankingCard
