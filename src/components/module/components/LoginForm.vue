@@ -55,17 +55,21 @@
         e.preventDefault()
         try {
           const response = await axios.post('http://localhost:80/api/login', this.loginData);
+          const parsedRanking = JSON.parse(response.data.user.ranking)
           const user = {
             name: response.data.user.name,
             email: response.data.user.email,
             user: this.loginData.user,
             password: this.loginData.password,
-            token: response.data.token
+            token: response.data.token,
+            ranking: parsedRanking,
+            lists: response.data.user.lists
           }
+          console.log('USER', user)
           useAuthStore().logIn(user)
           this.loggingIn = true
           setTimeout(() => {
-            this.$router.push({ name: 'home' });
+            this.$router.push({name: "general-ranking"});
           }, 1000);
         } catch (error) {
           console.error(error)

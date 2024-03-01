@@ -40,6 +40,8 @@
           email: null,
           user: null,
           password: null,
+          ranking: "{}",
+          lists: "{}"
         },
         nameError: false,
         emailError: false,
@@ -105,9 +107,6 @@
         try {
           const response = await axios.post('http://localhost:80/api/register', this.registerData);
           this.registered = true
-          setTimeout(() => {
-            this.$router.push({ name: 'home' });
-          }, 1000);
         } catch (error) {
           console.error(error)
         }
@@ -160,12 +159,12 @@
       font-size: 0.9em;
     }
     .confirmation {
-        border: 1px solid green;
-        color: green;
-        text-align: center;
-        padding: 10px;
-        border-radius: 5px;
-        font-size: 0.9em;
-      }
+      border: 1px solid green;
+      color: green;
+      text-align: center;
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 0.9em;
+    }
   } 
 </style>
