@@ -56,7 +56,9 @@
         try {
           const response = await axios.post('http://localhost:80/api/login', this.loginData);
           const parsedRanking = JSON.parse(response.data.user.ranking)
+          console.log(response)
           const user = {
+            id: response.data.user.id,
             name: response.data.user.name,
             email: response.data.user.email,
             user: this.loginData.user,
